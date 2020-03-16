@@ -1,0 +1,143 @@
+{
+  "project_info": {
+    "project_number": "625189891046",
+    "firebase_url": "https://gist-25f32.firebaseio.com",
+    "project_id": "gist-25f32",
+    "storage_bucket": "gist-25f32.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:625189891046:android:457737f22a7782ad688427",
+        "android_client_info": {
+          "package_name": "com.example.gistmedinternal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "625189891046-oni228imv5003fb87fbkf4d38oenkc9g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.gistmedinternal",
+            "certificate_hash": "b9805f1b210c0dd7d4921db72a0ec74fb07759e5"
+          }
+        },
+        {
+          "client_id": "625189891046-3sn09on2gbl13t769ripd7jddcj4j66b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAzsFfADiB962pSOOD8KizLhJsqd9XiDgc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "625189891046-3sn09on2gbl13t769ripd7jddcj4j66b.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "625189891046-iin6e24r8228rjk0gupf6q2uo5rj8tln.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.GistMED.Internal-iPhone"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:625189891046:android:090e37527b080493688427",
+        "android_client_info": {
+          "package_name": "com.example.videoalgorithemtest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "625189891046-mel6a9jjkpv1lq7bjm4chfci2umrhqna.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.videoalgorithemtest",
+            "certificate_hash": "87180e9cedc699e1015697e01ecd6803db728b24"
+          }
+        },
+        {
+          "client_id": "625189891046-3sn09on2gbl13t769ripd7jddcj4j66b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAzsFfADiB962pSOOD8KizLhJsqd9XiDgc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "625189891046-3sn09on2gbl13t769ripd7jddcj4j66b.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "625189891046-iin6e24r8228rjk0gupf6q2uo5rj8tln.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.GistMED.Internal-iPhone"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:625189891046:android:e74f8ff691aa6088688427",
+        "android_client_info": {
+          "package_name": "com.gistMED.gistmd"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "625189891046-hm3rp1ff812ldi1u69cnijfsm5hnnkjq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gistMED.gistmd",
+            "certificate_hash": "642e886eb52f2ce7140a0d6436bb2b77fc5cf5da"
+          }
+        },
+        {
+          "client_id": "625189891046-3sn09on2gbl13t769ripd7jddcj4j66b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAzsFfADiB962pSOOD8KizLhJsqd9XiDgc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "625189891046-3sn09on2gbl13t769ripd7jddcj4j66b.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "625189891046-iin6e24r8228rjk0gupf6q2uo5rj8tln.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.GistMED.Internal-iPhone"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
