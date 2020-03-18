@@ -74,7 +74,7 @@ public class BlocksQueuePlayer
             });
         }
         else{
-            Log.e("End", "No more blocks to play!");
+            Log.e("En", "No more blocks to play!");
         }
     }
 
