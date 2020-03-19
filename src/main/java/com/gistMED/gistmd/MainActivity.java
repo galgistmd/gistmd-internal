@@ -25,15 +25,20 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.URI;
 import java.util.ArrayList;
+
+import bg.devlabs.fullscreenvideoview.FullscreenVideoView;
 
 
 public class MainActivity extends AppCompatActivity {
 
-    private VideoView videoView;
+    private FullscreenVideoView videoView;
     private StorageReference mStorageRef;
     private Button btn_scale_video_view;
     private QueuePlayer queuePlayer;
@@ -46,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         videoView = findViewById(R.id.video_view);
-        btn_scale_video_view = findViewById(R.id.btn_scale_video_view);
         mStorageRef = FirebaseStorage.getInstance().getReference();
 
         StorageReference ref3 = mStorageRef.child("Blocks/Nikur/intro1.mp4");
@@ -61,21 +65,32 @@ public class MainActivity extends AppCompatActivity {
         PathsForBlocks.add(ref4);
         PathsForBlocks.add(ref5);
 
+        try{
+            InputStream inputStream = getResources().openRawResource(R.raw.gist_logo_animation);
+            File tempFile = File.createTempFile("pre", "suf");
+            copyFile(inputStream, new FileOutputStream(tempFile));
+            BlocksQueuePlayer BlocksQueuePlayer = new BlocksQueuePlayer(PathsForBlocks,videoView,this,tempFile);
+            BlocksQueuePlayer.Start();
+            // Now some_file is tempFile .. do what you like
+        } catch (IOException e) {
+            throw new RuntimeException("Can't create temp file ", e);
+        }
+
+
 
         //queuePlayer = new QueuePlayer(PathsForBlocks,videoView,this);
         //queuePlayer.Start();
         String path = "android.resource://" + getPackageName() + "/" + R.raw.gist_logo_animation;
-        BlocksQueuePlayer BlocksQueuePlayer = new BlocksQueuePlayer(PathsForBlocks,videoView,this,path);
-        BlocksQueuePlayer.Start();
-
-        btn_scale_video_view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                GoFullScreen();
-            }
-        });
     }
 
+
+    private void copyFile(InputStream in, OutputStream out) throws IOException {
+        byte[] buffer = new byte[1024];
+        int read;
+        while((read = in.read(buffer)) != -1){
+            out.write(buffer, 0, read);
+        }
+    }
     private void GoFullScreen()
     {
 

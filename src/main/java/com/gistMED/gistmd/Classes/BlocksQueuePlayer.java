@@ -2,12 +2,10 @@ package com.gistMED.gistmd.Classes;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.media.MediaPlayer;
 import android.net.Uri;
 import android.util.Log;
-import android.view.View;
+import android.widget.Button;
 import android.widget.MediaController;
-import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
 
@@ -22,24 +20,27 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import bg.devlabs.fullscreenvideoview.FullscreenVideoView;
+import bg.devlabs.fullscreenvideoview.listener.OnVideoCompletedListener;
+
 public class BlocksQueuePlayer
 
 {
     private Queue<StorageReference> PathsForBlocks;
     private Queue<File> BlocksToPlay;
-    private VideoView VideoView;
-    private String PathForLocalIntro;
+    private FullscreenVideoView fullscreenVideoView;
+    private File IntroFile;
+    private static Boolean DO = false;
     MediaController MediaController;
     private ProgressDialog BufferDialog;
     private Boolean WaitingForBlockToDownload = false;
 
-    public BlocksQueuePlayer(ArrayList<StorageReference> pathsForBlocks, VideoView videoView, Activity activity,String pathForLocalIntro) {
+    public BlocksQueuePlayer(ArrayList<StorageReference> pathsForBlocks, FullscreenVideoView videoView, Activity activity,File introFile) {
         PathsForBlocks = new LinkedList<>(pathsForBlocks);
         BlocksToPlay = new LinkedList<>();
         MediaController = new MediaController(activity);
-        PathForLocalIntro = pathForLocalIntro;
-        VideoView = videoView;
-        VideoView.setMediaController(MediaController);
+        IntroFile = introFile;
+        fullscreenVideoView = videoView;
         BufferDialog = new ProgressDialog(activity);
         // MediaController.setVisibility(View.GONE);
     }
@@ -81,11 +82,11 @@ public class BlocksQueuePlayer
     public void Start()
     {
         PlayLocalIntro();
-        VideoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener()
-        {
+        fullscreenVideoView.addOnVideoCompletedListener(new OnVideoCompletedListener() {
             @Override
-            public void onCompletion(MediaPlayer mp)
-            {
+            public void onFinished() {
+                fullscreenVideoView.pause();
+
                 PlayNextBlock();
             }
         });
@@ -93,23 +94,21 @@ public class BlocksQueuePlayer
 
     private void PlayNextBlock()
     {
-            if (!BlocksToPlay.isEmpty()) {
-                VideoView.setVideoPath(BlocksToPlay.poll().getPath());
-                VideoView.start();
-                LoadBlockFromStorageToQueue();
-            } else {
-                BufferDialog.show();
-                WaitingForBlockToDownload = true;
-                Log.e("Error", "Downloading block... Please wait!");
-            }
+        if (!BlocksToPlay.isEmpty()) {
+            fullscreenVideoView.changeUrl(BlocksToPlay.poll().getPath());
+            fullscreenVideoView.enableAutoStart();
+            LoadBlockFromStorageToQueue();
+        } else {
+            BufferDialog.show();
+            WaitingForBlockToDownload = true;
+            Log.e("Error", "Downloading block... Please wait!");
+        }
     }
 
     private void PlayLocalIntro()
     {
-        VideoView.setVideoURI(Uri.parse(PathForLocalIntro));
-        VideoView.start();
+        fullscreenVideoView.videoFile(IntroFile);
+        fullscreenVideoView.enableAutoStart();
         LoadBlockFromStorageToQueue();
     }
-
-
 }
