@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
             throw new RuntimeException("Can't create temp file ", e);
         }
 
-        String path = "android.resource://" + getPackageName() + "/" + R.raw.gist_logo_animation;
+       // String path = "android.resource://" + getPackageName() + "/" + R.raw.gist_logo_animation;
     }
 
 
