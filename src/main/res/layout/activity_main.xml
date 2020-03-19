@@ -9,8 +9,8 @@
 
     <bg.devlabs.fullscreenvideoview.FullscreenVideoView
         android:id="@+id/video_view"
-        android:layout_width="396dp"
-        android:layout_height="287dp"
+        android:layout_width="402dp"
+        android:layout_height="243dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
