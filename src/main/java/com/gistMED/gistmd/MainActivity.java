@@ -91,9 +91,4 @@ public class MainActivity extends AppCompatActivity {
             out.write(buffer, 0, read);
         }
     }
-    private void GoFullScreen()
-    {
-
-    }
-
 }
