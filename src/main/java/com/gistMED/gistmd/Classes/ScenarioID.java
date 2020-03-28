@@ -2,35 +2,34 @@ package com.gistMED.gistmd.Classes;
 
 import android.util.Log;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class FlowID {
+public class ScenarioID {
 
     private LinkedHashMap<String,String> Parameters;
-    private String FlowID = "";
+    private String ScenarioID = "";
 
-    public FlowID(LinkedHashMap<String,String> Parameters)
+    public ScenarioID(LinkedHashMap<String,String> Parameters)
     {
         this.Parameters = Parameters;
-        GenerateFlowID();
+        GeneratesScenarioID();
     }
 
-    public void GenerateFlowID()
+    public void GeneratesScenarioID()
     {
         for (Map.Entry<String, String> entry : Parameters.entrySet()) {
             String k = entry.getKey();
             String v = entry.getValue();
-            this.FlowID +=k+v;
+            this.ScenarioID +=k+v;
         }
-        Log.e("ID",this.FlowID);
+        Log.e("ID",this.ScenarioID);
     }
 
-    public String GetFlowID()
+    public String GetScenarioID()
     {
-        if(this.FlowID != null)
-            return this.FlowID;
+        if(this.ScenarioID != null)
+            return this.ScenarioID;
         else
             return "Error";
     }
