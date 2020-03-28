@@ -36,7 +36,7 @@ import java.util.ArrayList;
 import bg.devlabs.fullscreenvideoview.FullscreenVideoView;
 
 
-public class MainActivity extends AppCompatActivity {
+public class CinemaActivity extends AppCompatActivity {
 
     private FullscreenVideoView videoView;
     private StorageReference mStorageRef;

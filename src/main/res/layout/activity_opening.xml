@@ -57,6 +57,7 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:text="הדרכה מותאמת אישית למטופל" />
 
+
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="181dp"
