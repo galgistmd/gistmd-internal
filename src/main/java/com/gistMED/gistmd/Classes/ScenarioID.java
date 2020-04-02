@@ -7,29 +7,29 @@ import java.util.Map;
 
 public class ScenarioID {
 
-    private LinkedHashMap<String,String> Parameters;
-    private String ScenarioID = "";
+    private LinkedHashMap<String,String> parameters;
+    private String scenarioID = "";
 
     public ScenarioID(LinkedHashMap<String,String> Parameters)
     {
-        this.Parameters = Parameters;
+        this.parameters = Parameters;
         GeneratesScenarioID();
     }
 
     public void GeneratesScenarioID()
     {
-        for (Map.Entry<String, String> entry : Parameters.entrySet()) {
+        for (Map.Entry<String, String> entry : parameters.entrySet()) {
             String k = entry.getKey();
             String v = entry.getValue();
-            this.ScenarioID +=k+v;
+            this.scenarioID +=k+v;
         }
-        Log.e("ID",this.ScenarioID);
+        Log.e("ID",this.scenarioID);
     }
 
     public String GetScenarioID()
     {
-        if(this.ScenarioID != null)
-            return this.ScenarioID;
+        if(this.scenarioID != null)
+            return this.scenarioID;
         else
             return "Error";
     }

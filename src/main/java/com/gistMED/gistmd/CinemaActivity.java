@@ -29,7 +29,7 @@ public class CinemaActivity extends AppCompatActivity {
     private StorageReference mStorageRef;
     private Button btn_scale_video_view;
     private QueuePlayer queuePlayer;
-    private ArrayList<StorageReference> PathsForBlocks = new ArrayList<>();
+    private ArrayList<StorageReference> pathsForBlocks = new ArrayList<>();
 
 
     @Override
@@ -40,40 +40,40 @@ public class CinemaActivity extends AppCompatActivity {
         videoView = findViewById(R.id.video_view);
         mStorageRef = FirebaseStorage.getInstance().getReference();
 
-        if(StaticObjects.BlocksFromFlow !=null)
-          PathsForBlocks = CreatePathsForBlocks(StaticObjects.BlocksFromFlow);
+       if(StaticObjects.mBlocksFromFlow !=null)
+         pathsForBlocks = CreatePathsForBlocks(StaticObjects.mBlocksFromFlow);
 
-        try{
-            InputStream inputStream = getResources().openRawResource(R.raw.gist_logo_animation);
-            File tempFile = File.createTempFile("pre", "suf");
-            copyFile(inputStream, new FileOutputStream(tempFile));
-            BlocksQueuePlayer BlocksQueuePlayer = new BlocksQueuePlayer(PathsForBlocks,videoView,this,tempFile);
-            BlocksQueuePlayer.Start();
-        } catch (IOException e) {
-            throw new RuntimeException("Can't create temp file ", e);
-        }
+       try{
+           InputStream inputStream = getResources().openRawResource(R.raw.gist_logo_animation);
+           File tempFile = File.createTempFile("pre", "suf");
+           copyFile(inputStream, new FileOutputStream(tempFile));
+           BlocksQueuePlayer BlocksQueuePlayer = new BlocksQueuePlayer(pathsForBlocks,videoView,this,tempFile);
+           BlocksQueuePlayer.Start();
+       } catch (IOException e) {
+           throw new RuntimeException("Can't create temp file ", e);
+       }
 
-    }
+   }
 
 
-    private void copyFile(InputStream in, OutputStream out) throws IOException {
-        byte[] buffer = new byte[1024];
-        int read;
-        while((read = in.read(buffer)) != -1){
-            out.write(buffer, 0, read);
-        }
-    }
+   private void copyFile(InputStream in, OutputStream out) throws IOException {
+       byte[] buffer = new byte[1024];
+       int read;
+       while((read = in.read(buffer)) != -1){
+           out.write(buffer, 0, read);
+       }
+   }
 
-    private ArrayList<StorageReference> CreatePathsForBlocks(LinkedHashMap<String,String> BlocksFromFlow)
-    {
-        ArrayList<StorageReference> PathsForBlocks = new ArrayList<>();
+   private ArrayList<StorageReference> CreatePathsForBlocks(LinkedHashMap<String,String> BlocksFromFlow)
+   {
+       ArrayList<StorageReference> PathsForBlocks = new ArrayList<>();
 
-        for (Map.Entry<String, String> entry : BlocksFromFlow.entrySet()) {
-            String v = entry.getValue();
-            String childRef = getString(R.string.videoFolderName)+"/"+"Nikur"+"/"+v+"."+getString(R.string.videoFormat);
-            StorageReference ref = mStorageRef.child(childRef);
-            PathsForBlocks.add(ref);
-        }
-        return PathsForBlocks;
+       for (Map.Entry<String, String> entry : BlocksFromFlow.entrySet()) {
+           String v = entry.getValue();
+           String childRef = getString(R.string.videoFolderName)+"/"+"Nikur"+"/"+v+"."+getString(R.string.videoFormat);
+           StorageReference ref = mStorageRef.child(childRef);
+           PathsForBlocks.add(ref);
+       }
+       return PathsForBlocks;
     }
 }
