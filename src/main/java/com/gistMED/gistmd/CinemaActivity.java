@@ -26,7 +26,6 @@ import bg.devlabs.fullscreenvideoview.FullscreenVideoView;
 public class CinemaActivity extends AppCompatActivity {
 
     private FullscreenVideoView videoView;
-    private StorageReference mStorageRef;
     private Button btn_scale_video_view;
     private QueuePlayer queuePlayer;
     private ArrayList<StorageReference> pathsForBlocks = new ArrayList<>();
@@ -37,14 +36,13 @@ public class CinemaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cinema);
 
-        videoView = findViewById(R.id.video_view);
-        mStorageRef = FirebaseStorage.getInstance().getReference();
+        videoView = findViewById(R.id.fullscreenVideoView);
 
        if(StaticObjects.mBlocksFromFlow !=null)
-         pathsForBlocks = CreatePathsForBlocks(StaticObjects.mBlocksFromFlow);
+         pathsForBlocks = CreatePathsForBlocks(StaticObjects.mBlocksFromFlow); //crete references to the blocks
 
        try{
-           InputStream inputStream = getResources().openRawResource(R.raw.gist_logo_animation);
+           InputStream inputStream = getResources().openRawResource(R.raw.gist_logo_animation); //load local video to file obj
            File tempFile = File.createTempFile("pre", "suf");
            copyFile(inputStream, new FileOutputStream(tempFile));
            BlocksQueuePlayer BlocksQueuePlayer = new BlocksQueuePlayer(pathsForBlocks,videoView,this,tempFile);
@@ -71,7 +69,7 @@ public class CinemaActivity extends AppCompatActivity {
        for (Map.Entry<String, String> entry : BlocksFromFlow.entrySet()) {
            String v = entry.getValue();
            String childRef = getString(R.string.videoFolderName)+"/"+"Nikur"+"/"+v+"."+getString(R.string.videoFormat);
-           StorageReference ref = mStorageRef.child(childRef);
+           StorageReference ref = StaticObjects.mStorageRef.child(childRef);
            PathsForBlocks.add(ref);
        }
        return PathsForBlocks;

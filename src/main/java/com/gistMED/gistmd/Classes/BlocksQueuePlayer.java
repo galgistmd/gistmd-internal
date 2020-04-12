@@ -33,18 +33,18 @@ public class BlocksQueuePlayer
     private Boolean waitingForBlockToDownload = false;
 
     public BlocksQueuePlayer(ArrayList<StorageReference> pathsForBlocks, FullscreenVideoView videoView, Activity activity,File introFile) {
-        this.pathsForBlocks = new LinkedList<>(pathsForBlocks);
-        blocksToPlay = new LinkedList<>();
-        mediaController = new MediaController(activity);
+        this.pathsForBlocks = new LinkedList<>(pathsForBlocks); //all the paths for blocks from storage
+        blocksToPlay = new LinkedList<>(); //files to play from queue
+       // mediaController = new MediaController(activity);
         this.introFile = introFile;
         fullScreenVideoView = videoView;
-        bufferDialog = new ProgressDialog(activity);
+        bufferDialog = new ProgressDialog(activity); //buffering video dialog
         // MediaController.setVisibility(View.GONE);
     }
 
     private void LoadBlockFromStorageToQueue()
     {
-        if (!pathsForBlocks.isEmpty()) {
+        if (!pathsForBlocks.isEmpty()) { //if no more paths for blocks to play stop
             File localFile = null;
             try {
                 localFile = File.createTempFile("videos", "mp4");
@@ -55,13 +55,13 @@ public class BlocksQueuePlayer
             final File finalLocalFile = localFile;
             pathsForBlocks.poll().getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                 @Override
-                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) { //get file by path from storage
                     blocksToPlay.add(finalLocalFile);
-                    if(waitingForBlockToDownload)
+                    if(waitingForBlockToDownload) //if waited to block to download than play it
                     {
-                        bufferDialog.dismiss();
-                        PlayNextBlock();
-                        waitingForBlockToDownload = false;
+                        bufferDialog.dismiss(); // cancel buffering dialog
+                        PlayNextBlock(); //play the block
+                        waitingForBlockToDownload = false; //set flag to false because not waiting for block
                     }
                 }
             }).addOnFailureListener(new OnFailureListener() {
@@ -78,22 +78,22 @@ public class BlocksQueuePlayer
 
     public void Start()
     {
-        PlayLocalIntro();
+        PlayLocalIntro(); //play the local intro
         fullScreenVideoView.addOnVideoCompletedListener(new OnVideoCompletedListener() {
             @Override
             public void onFinished() {
                 PlayNextBlock();
             }
-        });
+        });//when block played start next one
     }
 
     private void PlayNextBlock()
     {
-        if (!blocksToPlay.isEmpty()) {
-            fullScreenVideoView.changeUrl(blocksToPlay.poll().getPath());
+        if (!blocksToPlay.isEmpty()) { //if no files to play wait for block to download
+            fullScreenVideoView.changeVideoFile(blocksToPlay.poll());
             fullScreenVideoView.enableAutoStart();
             LoadBlockFromStorageToQueue();
-        } else {
+        } else { //wait for block
             bufferDialog.show();
             waitingForBlockToDownload = true;
             Log.e("Error", "Downloading block... Please wait!");
