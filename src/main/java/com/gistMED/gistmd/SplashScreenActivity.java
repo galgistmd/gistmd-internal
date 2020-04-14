@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.provider.ContactsContract;
 import android.util.Log;
 
+import com.gistMED.gistmd.Classes.MyAppApplication;
 import com.gistMED.gistmd.Classes.Organization;
 import com.gistMED.gistmd.Classes.StaticObjects;
 import com.gistMED.gistmd.Classes.User;
@@ -17,6 +18,7 @@ import com.google.firebase.FirebaseOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
@@ -28,8 +30,10 @@ public class SplashScreenActivity extends AppCompatActivity {
     /** Duration of wait **/
     private final int SPLASH_DISPLAY_LENGTH = 1000;
 
-    private Boolean finishedLoadingTranslation = true;
-    private Boolean finishedLoadingUsers = true;
+    private MyAppApplication mApp;
+
+    private Boolean finishedLoadingTranslation = false;
+    private Boolean finishedLoadingUsers = false;
     private Boolean finishedGettingConfig= false;
     private Boolean finishedLoadingOrgs = false;
     private Boolean moveOnTry = false;
@@ -46,24 +50,23 @@ public class SplashScreenActivity extends AppCompatActivity {
                 .setApplicationId(getString(R.string.AppID))
                 .setDatabaseUrl(StaticObjects.DB_URL)
                 .build();
-        FirebaseApp secondApp = FirebaseApp.initializeApp(getApplicationContext(), options, "second app");
 
-        StaticObjects.mDataBaseRef = FirebaseDatabase.getInstance(secondApp).getReference();
+        FirebaseApp.initializeApp(this.getApplicationContext(), options, "data_base");
+        FirebaseApp secondApp = FirebaseApp.getInstance("data_base");
+        FirebaseDatabase secondDatabase = FirebaseDatabase.getInstance(secondApp);
+
+
+        StaticObjects.mDataBaseRef = secondDatabase.getReference();
         StaticObjects.mStorageRef = FirebaseStorage.getInstance().getReference();
         StaticObjects.mAuthRef = FirebaseAuth.getInstance();
 
-        if(true) { //TODO: CHECK HERE IF NOT SIGNED IN == TRUE
-            finishedLoadingUsers = false;
-            GetUsers(); //load users if he is not signed in
-            GetOrganizations();
-        }
 
-        else //the user is signed in if not then load translations later...
-        {
-            finishedLoadingTranslation = false;
+        GetUsers();
+
+        if(false) { //only if user is auto signed in
             GetTranslation();
         }
-
+        GetOrganizations();
         GetConfigurations();
 
         /* New Handler to start the Menu-Activity
@@ -82,7 +85,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
     private void GetOrganizations()
     {
-        StaticObjects.mDataBaseRef.child("organizations").addListenerForSingleValueEvent(new ValueEventListener() {
+       StaticObjects.mDataBaseRef.child("organizations").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot org:dataSnapshot.getChildren())

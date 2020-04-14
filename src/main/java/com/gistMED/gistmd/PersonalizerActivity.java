@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,8 +15,9 @@ import android.widget.TextView;
 
 import com.gistMED.gistmd.Classes.Answer;
 import com.gistMED.gistmd.Classes.InformationPackage;
-import com.gistMED.gistmd.Classes.RecyclerViewAdapter;
+import com.gistMED.gistmd.Classes.PersonalizerAdapter;
 import com.gistMED.gistmd.Classes.StaticObjects;
+import com.gistMED.gistmd.Classes.ToolBarConfig;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,18 +29,16 @@ import com.jama.carouselview.CarouselView;
 import com.jama.carouselview.CarouselViewListener;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 public class PersonalizerActivity extends AppCompatActivity {
 
-    private LinkedHashMap<String,String> blocksFromFlow = new LinkedHashMap<>();
     private HashMap<String,String> collectionView = new HashMap<>();
     private ArrayList<InformationPackage> procedureInfo = new ArrayList<>();
     private String selectedSubjectID;
     private RecyclerView cardsRV;
-    private RecyclerViewAdapter cardsAdapter;
+    private PersonalizerAdapter cardsAdapter;
     private ImageButton button_next,button_back;
     private TextView sub_label;
     private String flowID;
@@ -51,6 +49,8 @@ public class PersonalizerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personalizer);
+
+        ToolBarConfig.ConfigToolBar(this);
 
         cardsRV = findViewById(R.id.recycleview_card);
         carouselView = findViewById(R.id.carouselView);
@@ -209,65 +209,13 @@ public class PersonalizerActivity extends AppCompatActivity {
 
     private void SetUpCardsUI()
     {
-        cardsAdapter = new RecyclerViewAdapter(getApplicationContext(), procedureInfo);
+        cardsAdapter = new PersonalizerAdapter(getApplicationContext(), procedureInfo,this);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
         cardsRV.setLayoutManager(gridLayoutManager);
         cardsRV.setAdapter(cardsAdapter);
     }
 
-    private void GetFlowIDbySet(final HashMap <String,String> set)
-    {
-        final HashMap<String,String> DBset = new HashMap<>();
-        final DatabaseReference ScenarioRef = StaticObjects.mDataBaseRef.child("scenario");
-        ScenarioRef.addListenerForSingleValueEvent(new ValueEventListener() {
-           @Override
-           public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-              for(DataSnapshot ds:dataSnapshot.getChildren())
-              {
-                  for (DataSnapshot pare : ds.child("set").getChildren())
-                  {
-                      String k = pare.getKey();
-                      String v = pare.getValue(String.class);
-                      DBset.put(k,v);
-                  }
-                  Log.e("hash",DBset.toString());
-                  if(DBset.equals(set))
-                  {
-                      GetBlocksByFlowID(ds.child("flow_id").getValue(String.class));
-                      break;
-                  }
-              }
-           }
 
-           @Override
-           public void onCancelled(@NonNull DatabaseError databaseError) {
-
-           }
-       });
-    }
-
-    private void GetBlocksByFlowID(String FlowID)
-    {
-        StaticObjects.mDataBaseRef.child("flows").child(FlowID).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot ds : dataSnapshot.getChildren())
-                {
-                    String k = ds.getKey();
-                    String v = ds.getValue(String.class);
-                    blocksFromFlow.put(k,v);
-                }
-                StaticObjects.mBlocksFromFlow = blocksFromFlow;
-                Log.e("hashmap", blocksFromFlow.toString());
-               // StartCinemaActivity();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
 
     private void SetSubLabel()
     {
@@ -275,9 +223,4 @@ public class PersonalizerActivity extends AppCompatActivity {
             sub_label.setText(procedureInfo.get(StaticObjects.pagePos).getSubLabel());
     }
 
-    private void StartCinemaActivity()
-    {
-        Intent Intent = new Intent(PersonalizerActivity.this, CinemaActivity.class);
-        PersonalizerActivity.this.startActivity(Intent);
-    }
 }
