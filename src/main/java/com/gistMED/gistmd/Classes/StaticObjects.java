@@ -7,9 +7,17 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.storage.StorageReference;
 import com.jama.carouselview.CarouselView;
 
+import java.security.Timestamp;
+import java.sql.Time;
+import java.text.DateFormat;
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.TimeZone;
 
 public class StaticObjects {
     public static DatabaseReference mDataBaseRef;
@@ -36,4 +44,20 @@ public class StaticObjects {
         }
         return all;
     }
+
+    public static String convertTimeStampToDate(long time){
+        Date dateObj = new Date(time*1000);
+        DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
+        String text = df.format(dateObj);
+        return text;
+    }
+
+    public static String convertTimeStampToTime(long time){
+        Time dateObj = new Time(time*1000);
+        DateFormat df = new SimpleDateFormat("HH:mm");
+        String text = df.format(dateObj);
+        return text;
+    }
+
+
 }

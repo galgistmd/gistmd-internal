@@ -4,5 +4,6 @@
         <item>@font/assistant</item>
         <item>@font/assistant_bold</item>
         <item>@font/assistant_semibold</item>
+        <item>@font/poppins_bold</item>
     </array>
 </resources>

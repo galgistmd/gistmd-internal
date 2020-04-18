@@ -32,7 +32,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
     private MyAppApplication mApp;
 
-    private Boolean finishedLoadingTranslation = false;
+    private Boolean finishedLoadingTranslation = true;
     private Boolean finishedLoadingUsers = false;
     private Boolean finishedGettingConfig= false;
     private Boolean finishedLoadingOrgs = false;
@@ -55,19 +55,20 @@ public class SplashScreenActivity extends AppCompatActivity {
         FirebaseApp secondApp = FirebaseApp.getInstance("data_base");
         FirebaseDatabase secondDatabase = FirebaseDatabase.getInstance(secondApp);
 
-
         StaticObjects.mDataBaseRef = secondDatabase.getReference();
         StaticObjects.mStorageRef = FirebaseStorage.getInstance().getReference();
         StaticObjects.mAuthRef = FirebaseAuth.getInstance();
 
-
         GetUsers();
 
         if(false) { //only if user is auto signed in
+            finishedLoadingTranslation = false;
             GetTranslation();
         }
         GetOrganizations();
         GetConfigurations();
+
+        //Request();
 
         /* New Handler to start the Menu-Activity
          * and close this Splash-Screen after some seconds.*/
@@ -143,7 +144,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
     private void GetUsers()
     {
-        StaticObjects.mDataBaseRef.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
+       StaticObjects.mDataBaseRef.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot user : dataSnapshot.getChildren()) //getting users that only from the specified organization
@@ -197,6 +198,12 @@ public class SplashScreenActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void Request()
+    {
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        database.getReference().child("please").push().child("name").setValue("nigger");
     }
 
     private void CheckThreadsCond()
