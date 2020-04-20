@@ -1,11 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
     android:orientation="vertical">
 
-    <bg.devlabs.fullscreenvideoview.FullscreenVideoView
-        android:id="@+id/fullscreenVideoView"
+    <include layout="@layout/toolbar"
+        android:id="@+id/toolbar">
+    </include>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="390dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:cardCornerRadius="20dp"
+        android:layout_gravity="center">
+
+        <bg.devlabs.fullscreenvideoview.FullscreenVideoView
+            android:id="@+id/fullscreenVideoView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/sendsms_button"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="24dp"
+            android:background="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></ImageButton>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/assistant_bold"
+            android:paddingBottom="20dp"
+            android:text="שלח לנייד"
+            android:textColor="#F02A4C"
+            app:layout_constraintEnd_toEndOf="@+id/sendsms_button"
+            app:layout_constraintStart_toStartOf="@+id/sendsms_button"
+            app:layout_constraintTop_toBottomOf="@+id/sendsms_button"></TextView>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="52dp"
+            android:fontFamily="@font/assistant_semibold"
+            android:text="ניקור פלוראלי"
+            android:textColor="#444444"
+            android:textSize="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/sendsms_button"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </androidx.appcompat.widget.AppCompatTextView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="1dp"
+        android:background="@drawable/line">
+    </ImageView>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="300dp"
+        android:layout_gravity="center"
+        android:id="@+id/video_description"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/assistant"
+        android:paddingTop="30dp"
+        android:textSize="20dp"
+        android:text="Este é um vídeo tutorial criado pela irmã Anastasia Berkowitz. Para um paciente com mais de 70 anos, que fala hebraico, com embolia pulmonar. O paciente será submetido ao procedimento de drenagem de líquido pleural, com anestesia local para aliviar a respiração."
+        android:textColor="#707070">
+    </androidx.appcompat.widget.AppCompatTextView>
 </LinearLayout>
