@@ -165,6 +165,8 @@ public class UpdateUserInfoActivity extends Dialog {
 
         TextWatchers();
 
+
+
         if(StaticObjects.mConnecteduserinfo.getUser_gender().equals(User.Gender.Male)) {
             select_gender.setPosition(1);
             userGender = User.Gender.Male.toString();

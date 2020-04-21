@@ -18,7 +18,7 @@ public class Case {
     private String condition;
     private String answers_id;
     private Scenario scenario;
-    private HashMap<String,String> answers;
+    private HashMap<String,String> answers = new HashMap<>();
 
     public Case(String comments_id, String scenario_id,String creator_id,String condition) {
         this.comments_id = comments_id;
@@ -33,7 +33,8 @@ public class Case {
     }
 
     public void setAnswers(HashMap<String, String> answers) {
-        this.answers = answers;
+        if(answers!=null)
+            this.answers = answers;
     }
 
     public String getAnswers_id() {

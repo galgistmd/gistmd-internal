@@ -317,9 +317,9 @@ public class UserPageActivity extends AppCompatActivity {
                                             x_button.setBackground(getResources().getDrawable(R.drawable.xselected));
                                             check_button.setBackground(getResources().getDrawable(R.drawable.checkbuttonnotselected));
                                             String selection = "1";
-                                            if (CurrentCase.getAnswers().containsKey(getItem(position).getQuestionID())) {
-                                                CurrentCase.getAnswers().replace(getItem(position).getQuestionID(),selection);
-                                            }
+                                                if (CurrentCase.getAnswers().containsKey(getItem(position).getQuestionID())) {
+                                                    CurrentCase.getAnswers().replace(getItem(position).getQuestionID(), selection);
+                                                }
                                             else
                                                 CurrentCase.getAnswers().put(getItem(position).getQuestionID(),selection);
                                             StaticObjects.mDataBaseRef.child("answers").child(CurrentCase.getAnswers_id()).child(getItem(position).getQuestionID()).setValue(selection);
@@ -333,8 +333,8 @@ public class UserPageActivity extends AppCompatActivity {
                                             check_button.setBackground(getResources().getDrawable(R.drawable.checkselected));
                                             x_button.setBackground(getResources().getDrawable(R.drawable.nobuttonunselected));
                                             String selection = "0";
-                                            if (CurrentCase.getAnswers().containsKey(getItem(position).getQuestionID())) {
-                                                CurrentCase.getAnswers().replace(getItem(position).getQuestionID(),selection);
+                                                if (CurrentCase.getAnswers().containsKey(getItem(position).getQuestionID())) {
+                                                    CurrentCase.getAnswers().replace(getItem(position).getQuestionID(), selection);
                                             }
                                             else
                                                 CurrentCase.getAnswers().put(getItem(position).getQuestionID(),selection);
