@@ -1,0 +1,186 @@
+    <FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="20dp"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <androidx.cardview.widget.CardView
+            app:cardCornerRadius="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="290dp"
+            android:layout_marginTop="70dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            app:cardBackgroundColor="#ecf0f1"
+            >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="250dp">
+
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginEnd="28dp"
+                    android:layout_marginBottom="12dp"
+                    android:src="@drawable/clockicon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent">
+
+                </ImageView>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/date_txtview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="24dp"
+                    android:fontFamily="@font/assistant_bold"
+                    android:text="תאריך"
+                    android:textColor="#444444"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+                    app:layout_constraintEnd_toStartOf="@+id/imageView6"
+                    app:layout_constraintTop_toTopOf="@+id/imageView6">
+
+                </androidx.appcompat.widget.AppCompatTextView>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/time_txtview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="24dp"
+                    android:fontFamily="@font/assistant"
+                    android:text="זמן"
+                    android:textColor="#444444"
+                    app:layout_constraintBottom_toBottomOf="@+id/date_txtview"
+                    app:layout_constraintEnd_toStartOf="@+id/date_txtview"
+                    app:layout_constraintTop_toTopOf="@+id/date_txtview"
+                    app:layout_constraintVertical_bias="0.0">
+
+                </androidx.appcompat.widget.AppCompatTextView>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            app:cardCornerRadius="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="20dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/proc_type_txtview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="116dp"
+                    android:fontFamily="@font/assistant_semibold"
+                    android:paddingLeft="8dp"
+                    android:text="הסוג"
+                    android:textColor="#444444"
+                    android:textSize="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/age_txtview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="116dp"
+                    android:fontFamily="@font/assistant"
+                    android:paddingLeft="8dp"
+                    android:text="הגיל"
+                    android:textColor="#444444"
+                    android:textSize="15dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/proc_type_txtview" />
+
+                <TextView
+                    android:id="@+id/lang_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:fontFamily="@font/assistant"
+                    android:paddingLeft="8dp"
+                    android:text="שפה"
+                    android:textColor="#444444"
+                    android:textSize="15dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/age_txtview"
+                    app:layout_constraintEnd_toStartOf="@+id/age_txtview"
+                    app:layout_constraintTop_toTopOf="@+id/age_txtview"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:scaleType="center"
+                    android:src="@drawable/line"
+                    app:layout_constraintBottom_toTopOf="@+id/questions_listview"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.918">
+
+                </ImageView>
+
+                <ListView
+                    android:id="@+id/questions_listview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="140dp"
+                    android:layout_marginTop="92dp"
+                    android:divider="@null"
+                    android:nestedScrollingEnabled="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/proc_type_txtview"></ListView>
+
+                <ImageView
+                    android:id="@+id/expand_donts"
+                    android:layout_width="30dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="24dp"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"
+                    android:src="@drawable/expanddonts"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/questions_listview" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+
+        <ImageView
+            android:src="@drawable/iconexample"
+            android:layout_width="100dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="-40dp"
+            android:id="@+id/img_view_icon"
+            android:layout_marginLeft="290dp"
+            android:elevation="2dp" />
+
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/playvideo"
+            android:elevation="2dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="275dp"
+            >
+        </ImageView>
+
+    </FrameLayout>

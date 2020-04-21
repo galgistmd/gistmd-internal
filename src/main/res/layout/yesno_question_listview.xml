@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_gravity="center"
+android:layout_height="70dp"
+android:orientation="horizontal"
+android:paddingTop="20dp"
+android:paddingBottom="20dp">
+
+<ImageButton
+    android:layout_width="30dp"
+    android:layout_height="30dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginLeft="10dp"
+    android:id="@+id/x_button"
+    android:background="@drawable/nobuttonunselected">
+
+</ImageButton>
+
+<ImageButton
+    android:layout_width="30dp"
+    android:layout_height="30dp"
+    android:id="@+id/check_button"
+    android:background="@drawable/checkbuttonnotselected">
+
+</ImageButton>
+
+    <TextView
+        android:id="@+id/question_textview"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/assistant"
+        android:paddingRight="10dp"
+        android:layout_marginLeft="30dp"
+        android:text="שלום"
+        android:textColor="#444444"
+        android:textSize="15dp"></TextView>
+
+
+</LinearLayout>

@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    android:layout_height="wrap_content"
+    android:layout_width="300dp"
+    xmlns:andorid="http://schemas.android.com/tools"
+    android:id="@+id/cardview"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="16dp"
+    app:cardBackgroundColor="@color/white"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:id="@+id/finish_layout"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:visibility="invisible"
+        >
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/assistant"
+            android:gravity="center"
+            android:id="@+id/password_editxt"
+            android:paddingTop="10dp"
+            android:hint="סיסמא סודית"
+            android:textColor="#5C5C5C"
+            android:inputType="textPassword"
+            android:textSize="28dp"></EditText>
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/assistant"
+            android:gravity="center"
+            android:id="@+id/confrim_password_editxt"
+            android:paddingTop="5dp"
+            android:hint="אשר את הסיסמא"
+            android:textColor="#5C5C5C"
+            android:inputType="textPassword"
+            android:textSize="28dp"></EditText>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/assistant"
+            android:paddingBottom="10dp"
+            android:id="@+id/txt_view_2"
+            android:text="שפה שנוחה לך"
+            android:layout_marginTop="20dp"
+            android:textSize="23dp"></TextView>
+
+        <Spinner
+            android:id="@+id/spinner_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="13dp"
+            android:textColor="#636e72"
+            android:gravity="center"
+            />
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingBottom="20dp"
+            >
+
+            <Button
+                android:id="@+id/signup_button_2"
+                android:layout_width="102dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/button_unenabled"
+                android:fontFamily="@font/assistant_semibold"
+                android:text="הירשם"
+                android:textColor="#636e72"
+                android:textSize="18dp"></Button>
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_start"
+        android:layout_width="251dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:paddingTop="10dp"
+            android:src="#F02A4C" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/assistant"
+            android:id="@+id/txt_view"
+            android:text="תמונת פרופיל"
+            android:layout_marginTop="2dp"
+            android:textColor="#636e72"
+            android:textSize="13dp"></TextView>
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/assistant"
+            android:gravity="center"
+            android:id="@+id/fname_editxt"
+            android:paddingTop="5dp"
+            android:hint="שם פרטי"
+            android:textColor="#5C5C5C"
+            android:inputType="textPersonName"
+            android:textSize="28dp"></EditText>
+
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/assistant"
+            android:id="@+id/lname_editxt"
+            android:gravity="center"
+            android:hint="שם משפחה"
+            android:textColor="#5C5C5C"
+            android:paddingTop="5dp"
+            android:inputType="textPersonName"
+            android:textSize="28dp"></EditText>
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/assistant"
+            android:gravity="center"
+            android:id="@+id/email_editxt"
+            android:hint="כתובת מייל"
+            android:paddingTop="5dp"
+            android:textColor="#5C5C5C"
+            android:inputType="textEmailAddress"
+            android:textSize="28dp" />
+
+        <co.ceryle.radiorealbutton.RadioRealButtonGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:id="@+id/select_gender"
+            app:rrbg_animateDrawables_enter="overshoot"
+            app:rrbg_animateTexts_enter="overshoot"
+            app:rrbg_dividerColor="#F02A4C"
+            app:rrbg_dividerSize="2dp"
+            app:rrbg_radius="10dp"
+            app:rrbg_selectorColor="#F02A4C"
+            app:rrbg_selectorSize="4dp">
+
+            <co.ceryle.radiorealbutton.RadioRealButton
+                android:layout_width="147dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/woman"
+                app:rrb_drawable="@drawable/woman"
+                app:rrb_drawableGravity="top"
+                app:rrb_drawableHeight="60dp"
+                app:rrb_drawablePadding="4dp"
+                app:rrb_drawableWidth="60dp"
+                app:rrb_ripple="true"
+                app:rrb_rippleColor="#FDA7DF"
+                app:rrb_text="אישה"
+                app:rrb_textColor="#444444"
+                app:rrb_textSize="15dp"
+                app:rrb_textStyle="bold" />
+
+            <co.ceryle.radiorealbutton.RadioRealButton
+                android:layout_width="175dp"
+                android:layout_height="match_parent"
+                app:rrb_drawable="@drawable/man"
+                android:id="@+id/man"
+                app:rrb_drawableGravity="top"
+                app:rrb_drawableHeight="60dp"
+                app:rrb_drawablePadding="4dp"
+                app:rrb_drawableWidth="60dp"
+                app:rrb_ripple="true"
+                app:rrb_rippleColor="#1289A7"
+                app:rrb_text="גבר"
+                app:rrb_textColor="#444444"
+                app:rrb_textSize="15dp"
+                app:rrb_textStyle="bold" />
+        </co.ceryle.radiorealbutton.RadioRealButtonGroup>
+
+        <co.ceryle.radiorealbutton.RadioRealButtonGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/select_role"
+            android:paddingTop="10dp"
+            app:rrbg_animateDrawables_enter="overshoot"
+            app:rrbg_animateTexts_enter="overshoot"
+            app:rrbg_dividerColor="#F02A4C"
+            app:rrbg_dividerSize="2dp"
+            app:rrbg_radius="10dp"
+            app:rrbg_selectorColor="#F02A4C"
+            app:rrbg_selectorSize="4dp">
+
+            <co.ceryle.radiorealbutton.RadioRealButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:rrb_drawable="@drawable/woman"
+                app:rrb_drawableGravity="top"
+                app:rrb_drawableHeight="60dp"
+                app:rrb_drawablePadding="0dp"
+                app:rrb_drawableWidth="60dp"
+                app:rrb_ripple="true"
+                app:rrb_rippleColor="@color/white"
+                app:rrb_text="רופא/ה"
+                android:id="@+id/doctor"
+                app:rrb_textColor="#444444"
+                app:rrb_textSize="15dp"
+                app:rrb_textStyle="bold" />
+
+            <co.ceryle.radiorealbutton.RadioRealButton
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:rrb_drawable="@drawable/man"
+                app:rrb_drawableGravity="top"
+                app:rrb_drawableHeight="60dp"
+                app:rrb_drawablePadding="4dp"
+                app:rrb_drawableWidth="60dp"
+                android:id="@+id/nurse"
+                app:rrb_ripple="true"
+                app:rrb_rippleColor="@color/black"
+                app:rrb_text="אח/ות"
+                app:rrb_textColor="#444444"
+                app:rrb_textSize="15dp"
+                app:rrb_textStyle="bold" />
+        </co.ceryle.radiorealbutton.RadioRealButtonGroup>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingBottom="20dp"
+            >
+
+            <Button
+                android:id="@+id/signup_button"
+                android:layout_width="102dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/button_unenabled"
+                android:fontFamily="@font/assistant_semibold"
+                android:text="עדכן"
+                android:textColor="#636e72"
+                android:textSize="18dp"></Button>
+        </FrameLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:visibility="invisible"
+        android:id="@+id/loading_layout"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="28dp"
+            android:paddingTop="20dp"
+            android:textStyle="bold"
+            android:textColor="#636e72"
+            android:paddingLeft="30dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:text="מבצע רישום">
+        </TextView>
+
+        <com.wang.avi.AVLoadingIndicatorView
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            style="@style/AVLoadingIndicatorView.Large"
+            android:visibility="visible"
+            android:paddingBottom="20dp"
+            app:indicatorColor="#636e72"
+            app:indicatorName="BallPulseIndicator">
+        </com.wang.avi.AVLoadingIndicatorView>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
+

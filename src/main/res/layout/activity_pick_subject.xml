@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".PickSubjectActivity">
+
+    <include
+        layout="@layout/toolbar"
+        android:id="@+id/toolbar"
+        >
+    </include>
+
+    <LinearLayout
+        android:layout_width="390dp"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:background="@drawable/blueback"
+        android:layout_marginTop="80dp"
+        android:layout_height="500dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/assistant_bold"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:textSize="30dp"
+        android:text="בחר הליך רפואי"
+        android:textColor="#444444"></TextView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycleview_card"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        />
+
+   </LinearLayout>
+
+</LinearLayout>
